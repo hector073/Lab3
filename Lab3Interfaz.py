@@ -109,5 +109,5 @@ boton10min.grid(row = 7, column = 0)
 root.after(0, comArduinoAPython) #https://pythonguides.com/python-tkinter-mainloop/   
 root.mainloop() #crea el loop 
 """
-
+#
 comArduinoAPython()
