@@ -40,9 +40,15 @@ def comArduinoAPython():
     serialInst.open()
 
     while True:#se crea un loop para recibir datos constantemente
+       
         if serialInst.in_waiting:            
             packet = serialInst.readline()
             print(packet.decode('utf').rstrip('\n'))
+""""
+def dePyAArduino();
+    command = input("Seleccione la f de muestreo: ")
+    serialInst.write(command.encode('utf-8'))
+"""               
 """
 ####################################CREACION DE LA INTERFAZ###############################################
 #def Interfaz():
@@ -109,5 +115,5 @@ boton10min.grid(row = 7, column = 0)
 root.after(0, comArduinoAPython) #https://pythonguides.com/python-tkinter-mainloop/   
 root.mainloop() #crea el loop 
 """
-#
+# 
 comArduinoAPython()
