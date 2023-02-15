@@ -8,41 +8,41 @@ from tkinter import * #el * va a importar todo de la libreria de tkinter
 import serial.tools.list_ports #para importar esta libreria es necesario instalar la libreria. Para ello 
 # se escribe pip install pyserial en el comand prompt y se oprime enter
 
-def comArduinoAPython():   
-    #########################################Definicion de variables y arrays##############################
+#def comArduinoAPython():   
+#########################################Definicion de variables y arrays##############################
 
-    ports = serial.tools.list_ports.comports() # enlista los puertos com utilizados
-    serialInst = serial.Serial()  
+ports = serial.tools.list_ports.comports() # enlista los puertos com utilizados
+serialInst = serial.Serial()  
 
-    portsList = [] #array en el que se guardaran los puertos com para luego ser desplegados
+portsList = [] #array en el que se guardaran los puertos com para luego ser desplegados
 
-    #####################################COM PORTS##########################################################
+#####################################COM PORTS##########################################################
 
-    for onePort in ports:#este ciclo for despliega en pantalla los puertos com disponibles
-        portsList.append(str(onePort))
-        print(str(onePort)) 
+for onePort in ports:#este ciclo for despliega en pantalla los puertos com disponibles
+    portsList.append(str(onePort))
+    print(str(onePort)) 
 
-    val = input("Seleccione Puerto: COM") #el usuario puede seleccionar el puerto due que quiera
-    #recibir datos
+val = input("Seleccione Puerto: COM") #el usuario puede seleccionar el puerto due que quiera
+#recibir datos
 
-    #ahora queremos toma el numero seleccionado por el usuario y unirlo a un string que pueda identificar 
-    # nuestro dispositivo serial
-    for x in range(0,len(portsList)):
-        if portsList[x].startswith("COM" + str(val)):
-            portVar = "COM" + str(val)
-            print(portVar)
+#ahora queremos toma el numero seleccionado por el usuario y unirlo a un string que pueda identificar 
+# nuestro dispositivo serial
+for x in range(0,len(portsList)):
+    if portsList[x].startswith("COM" + str(val)):
+        portVar = "COM" + str(val)
+        print(portVar)
 
 
 
-    #---------------------------Seteando nuestro dispositivo serial para poder abrirlo--------------
-    serialInst.baudrate = 9600
-    serialInst.port = portVar
-    serialInst.open()
+#---------------------------Seteando nuestro dispositivo serial para poder abrirlo--------------
+serialInst.baudrate = 9600
+serialInst.port = portVar
+serialInst.open()
 
-    while True:#se crea un loop para recibir datos constantemente
-        if serialInst.in_waiting:            
-            packet = serialInst.readline()
-            print(packet.decode('utf').rstrip('\n'))
+while True:#se crea un loop para recibir datos constantemente
+    if serialInst.in_waiting:            
+        packet = serialInst.readline()
+        print(packet.decode('utf').rstrip('\n'))
 """
 ####################################CREACION DE LA INTERFAZ###############################################
 #def Interfaz():
@@ -110,4 +110,3 @@ root.after(0, comArduinoAPython) #https://pythonguides.com/python-tkinter-mainlo
 root.mainloop() #crea el loop 
 """
 
-comArduinoAPython()
